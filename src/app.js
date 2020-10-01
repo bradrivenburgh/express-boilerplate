@@ -1,11 +1,12 @@
 require('dotenv').config();
 const express = require('express');
+const { logger } = require('../logger');
 const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
 
-// Create Express application
+
 const app = express();
 
 // Create middleware logic
@@ -41,8 +42,8 @@ function errorHandler(error, req, res, next) {
 }
 
 app.use(morgan(morganOption));
-app.use(helmet());
 app.use(cors());
+app.use(helmet());
 // app.use(express.json()); // Enable if using non-GET endpoints
 // app.use(validateBearerToken); // Enable after adding validation
 // Routers can go here
